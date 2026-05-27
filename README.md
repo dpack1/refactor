@@ -1,124 +1,172 @@
 # Go Refactor Training
 
-This directory is for building small Go training workshops from source examples, including examples that originally came from Java.
+Small Go workshops for practicing one refactoring move at a time in idiomatic Go.
 
-## Navigation
+Each workshop includes:
 
-1. [Overview](#go-refactor-training)
-2. [Repository Layout](#repository-layout)
-3. [Workshops](#workshops)
-4. [Intended Workflow](#intended-workflow)
-5. [Running a Workshop](#running-a-workshop)
-6. [Notes](#notes)
+- `example/` for the learner starting point
+- `solution/` for the completed answer
+- `docs/` for the problem statement and walkthrough
 
-The goal is to keep each workshop simple and practical:
-
-- each workshop has an `example/` directory for the learner-facing starting point
-- each workshop has a `solution/` directory for the completed working version
-- each workshop has a `docs/` directory for the exercise and solution walkthroughs
-- each workshop should be small enough to teach in about five minutes
+The repository is organized for short exercises that should be completable in about five minutes and focus on Go structs, methods, helpers, and slice-oriented code.
 
 ## Workshops
 
-### Replace Loop with Pipeline
+### [Replace Loop with Pipeline](workshops/replace-loop-with-pipeline/)
 
+<table>
+  <tr>
+    <th>Before</th>
+    <th>After</th>
+  </tr>
+  <tr>
+    <td>
+      <pre lang="go"><code>names := make([]string, 0, len(users))
+for _, user := range users {
+    if user.Active {
+        names = append(names, user.Name)
+    }
+}</code></pre>
+    </td>
+    <td>
+      <pre lang="go"><code>names := Map(
+    Filter(users, isActive),
+    nameOf,
+)</code></pre>
+    </td>
+  </tr>
+</table>
 
-Replace loop with pipeline
-Before	After
-const names = [];
-for (const i of input) {
-  if (i.job === 'programmer') {
-    names.push(i.name);
-  }
+Refactor a loop-based transformation into a small slice pipeline built from Go helper functions.
+
+- Problem: [docs/problem.md](workshops/replace-loop-with-pipeline/docs/problem.md)
+- Solution walkthrough: [docs/solution.md](workshops/replace-loop-with-pipeline/docs/solution.md)
+- Starting code: [example/](workshops/replace-loop-with-pipeline/example/)
+- Reference solution: [solution/](workshops/replace-loop-with-pipeline/solution/)
+
+### [Decompose Conditional](workshops/decompose-conditional/)
+
+<table>
+  <tr>
+    <th>Before</th>
+    <th>After</th>
+  </tr>
+  <tr>
+    <td>
+      <pre lang="go"><code>if customer.isPremium && order.total() &gt; 100 {
+    return order.total() * 0.9
 }
-const names = input.filter(i => i.job === 'programmer').map(i => i.name);
-Loops are one of the most basic programming constructs and they're present in virtually all programming languages. Sometimes, though, there are more idiomatic and programming language-specific ways to do the same task and accomplish the same results. This helps with migrating to those cases.
+return order.total()</code></pre>
+    </td>
+    <td>
+      <pre lang="go"><code>if qualifiesForDiscount(customer, order) {
+    return discountedTotal(order)
+}
+return fullTotal(order)</code></pre>
+    </td>
+  </tr>
+</table>
 
-- Path: `workshops/replace-loop-with-pipeline/`
-- Focus: refactor a loop-based CSV transformation into a pipeline-style flow in Go
-- Includes learner code, solution code, and tests for both sides
+Break a dense conditional into named Go functions so the rule and both branches read clearly.
 
-### Decompose Conditional
+- Problem: [docs/problem.md](workshops/decompose-conditional/docs/problem.md)
+- Solution walkthrough: [docs/solution.md](workshops/decompose-conditional/docs/solution.md)
+- Starting code: [example/](workshops/decompose-conditional/example/)
+- Reference solution: [solution/](workshops/decompose-conditional/solution/)
 
-- Path: `workshops/decompose-conditional/`
-- Focus: refactor a dense conditional into named helpers for the condition and both branches
-- Includes learner code, solution code, and tests for both sides
+### [Replace Primitive with Object](workshops/replace-primitive-with-object/)
 
-### Replace Primitive with Object
+<table>
+  <tr>
+    <th>Before</th>
+    <th>After</th>
+  </tr>
+  <tr>
+    <td>
+      <pre lang="go"><code>type Ticket struct {
+    severity string
+}
 
-- Path: `workshops/replace-primitive-with-object/`
-- Focus: replace a string priority with a small `Priority` object and move behavior onto it
-- Includes learner code, solution code, and tests for both sides
+func (t Ticket) NeedsPaging() bool {
+    return t.severity == "critical"
+}</code></pre>
+    </td>
+    <td>
+      <pre lang="go"><code>type Severity struct {
+    value string
+}
 
-### Replace Temp with Query
+func (t Ticket) NeedsPaging() bool {
+    return t.severity.NeedsPaging()
+}</code></pre>
+    </td>
+  </tr>
+</table>
 
-- Path: `workshops/replace-temp-with-query/`
-- Focus: replace temporary variables in a pricing method with query methods on the struct
-- Includes learner code, solution code, and tests for both sides
+Replace a raw string field with a small Go type and move behavior onto that type.
 
-## Intended Workflow
+- Problem: [docs/problem.md](workshops/replace-primitive-with-object/docs/problem.md)
+- Solution walkthrough: [docs/solution.md](workshops/replace-primitive-with-object/docs/solution.md)
+- Starting code: [example/](workshops/replace-primitive-with-object/example/)
+- Reference solution: [solution/](workshops/replace-primitive-with-object/solution/)
 
-1. Start from a source example or teaching prompt.
-2. Convert the exercise so it is idiomatic and teachable in Go.
-3. Create the workshop folder under `workshops/`.
-4. Create the learner-facing version in `example/`.
-5. Create the finished version in `solution/`.
-6. Write supporting docs that explain the task and the solution process.
+### [Replace Temp with Query](workshops/replace-temp-with-query/)
 
-## Running a Workshop
+<table>
+  <tr>
+    <th>Before</th>
+    <th>After</th>
+  </tr>
+  <tr>
+    <td>
+      <pre lang="go"><code>subtotal := job.hours * job.hourlyRate
+fee := subtotal * 0.12
 
-Run the starting version:
+if subtotal &gt; 500 {
+    fee *= 0.5
+}
+
+return subtotal + fee</code></pre>
+    </td>
+    <td>
+      <pre lang="go"><code>return job.subtotal() + job.fee()</code></pre>
+    </td>
+  </tr>
+</table>
+
+Replace temporary variables with small query methods on a Go struct.
+
+- Problem: [docs/problem.md](workshops/replace-temp-with-query/docs/problem.md)
+- Solution walkthrough: [docs/solution.md](workshops/replace-temp-with-query/docs/solution.md)
+- Starting code: [example/](workshops/replace-temp-with-query/example/)
+- Reference solution: [solution/](workshops/replace-temp-with-query/solution/)
+
+## Quick Start
+
+Run a workshop from its `example/` or `solution/` directory path:
 
 ```bash
 go run ./workshops/replace-loop-with-pipeline/example
-```
-
-Run the learner tests:
-
-```bash
 go test ./workshops/replace-loop-with-pipeline/example
-```
 
-Run the completed solution:
-
-```bash
 go run ./workshops/replace-loop-with-pipeline/solution
-```
-
-Run the reference solution tests:
-
-```bash
 go test ./workshops/replace-loop-with-pipeline/solution
 ```
 
-Run the second workshop:
+Swap the workshop path to run any other exercise:
 
-```bash
-go run ./workshops/decompose-conditional/example
-go test ./workshops/decompose-conditional/example
-go run ./workshops/decompose-conditional/solution
-go test ./workshops/decompose-conditional/solution
+- `./workshops/decompose-conditional/...`
+- `./workshops/replace-primitive-with-object/...`
+- `./workshops/replace-temp-with-query/...`
+
+## Repository Layout
+
+```text
+workshops/
+  workshop-name/
+    example/
+    solution/
+    docs/
 ```
 
-Run the third workshop:
-
-```bash
-go run ./workshops/replace-primitive-with-object/example
-go test ./workshops/replace-primitive-with-object/example
-go run ./workshops/replace-primitive-with-object/solution
-go test ./workshops/replace-primitive-with-object/solution
-```
-
-Run the fourth workshop:
-
-```bash
-go run ./workshops/replace-temp-with-query/example
-go test ./workshops/replace-temp-with-query/example
-go run ./workshops/replace-temp-with-query/solution
-go test ./workshops/replace-temp-with-query/solution
-```
-
-## Notes
-
-- Repository guidance lives in `AGENTS.md`.
-- Each workshop should keep the split between problem and solution obvious.
+Repository-specific authoring guidance lives in [AGENTS.md](AGENTS.md).
