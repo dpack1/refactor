@@ -18,37 +18,21 @@ The goal is to keep each workshop simple and practical:
 - each workshop has a `docs/` directory for the exercise and solution walkthroughs
 - each workshop should be small enough to teach in about five minutes
 
-## Repository Layout
-
-```text
-.
-├── AGENTS.md
-├── README.md
-├── go.mod
-└── workshops/
-    ├── decompose-conditional/
-    │   ├── docs/
-    │   ├── example/
-    │   └── solution/
-    ├── replace-primitive-with-object/
-    │   ├── docs/
-    │   ├── example/
-    │   └── solution/
-    ├── replace-temp-with-query/
-    │   ├── docs/
-    │   ├── example/
-    │   └── solution/
-    └── replace-loop-with-pipeline/
-        ├── docs/
-        ├── example/
-        └── solution/
-```
-
-This layout is intentionally simple so each workshop is self-contained and easy to browse.
-
 ## Workshops
 
 ### Replace Loop with Pipeline
+
+
+Replace loop with pipeline
+Before	After
+const names = [];
+for (const i of input) {
+  if (i.job === 'programmer') {
+    names.push(i.name);
+  }
+}
+const names = input.filter(i => i.job === 'programmer').map(i => i.name);
+Loops are one of the most basic programming constructs and they're present in virtually all programming languages. Sometimes, though, there are more idiomatic and programming language-specific ways to do the same task and accomplish the same results. This helps with migrating to those cases.
 
 - Path: `workshops/replace-loop-with-pipeline/`
 - Focus: refactor a loop-based CSV transformation into a pipeline-style flow in Go
