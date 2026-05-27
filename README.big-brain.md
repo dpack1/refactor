@@ -1,24 +1,16 @@
-# Go Refactor Training, But By Grug
+# Go Refactor Training
 
-**Grug Brain** | [Big Brain](README.big-brain.md)
+[Grug Brain](README.md) | **Big Brain**
 
-grug make small go workshop
+Small Go workshops for practicing one refactoring move at a time in idiomatic Go.
 
-goal simple:
+Each workshop includes:
 
-- teach one refactor
-- keep workshop small
-- let learner finish before coffee get cold
+- `example/` for the learner starting point
+- `solution/` for the completed answer
+- `docs/` for the problem statement and walkthrough
 
-each workshop have:
-
-- `example/` where young grug make change
-- `solution/` where older grug already bonk complexity
-- `docs/` where grug explain why bonk happen
-
-repo for five minute workshop.
-five minute good.
-five minute leave less time for complexity demon to build nest.
+The repository is organized for short exercises that should be completable in about five minutes and focus on Go structs, methods, helpers, and slice-oriented code.
 
 ## Workshops
 
@@ -47,10 +39,7 @@ for _, user := range users {
   </tr>
 </table>
 
-loop fine.
-but sometimes helper function make intent easier for grug brain.
-important part is not "pipeline fancy".
-important part is "can grug read thing without headache".
+Refactor a loop-based transformation into a small slice pipeline built from Go helper functions.
 
 - Problem: [docs/problem.md](workshops/replace-loop-with-pipeline/docs/problem.md)
 - Solution walkthrough: [docs/solution.md](workshops/replace-loop-with-pipeline/docs/solution.md)
@@ -80,9 +69,7 @@ return fullTotal(order)</code></pre>
   </tr>
 </table>
 
-big conditional make grug squint.
-named function help grug know what code mean before grug know every detail.
-this good trade.
+Break a dense conditional into named Go functions so the rule and both branches read clearly.
 
 - Problem: [docs/problem.md](workshops/decompose-conditional/docs/problem.md)
 - Solution walkthrough: [docs/solution.md](workshops/decompose-conditional/docs/solution.md)
@@ -118,9 +105,7 @@ func (t Ticket) NeedsPaging() bool {
   </tr>
 </table>
 
-string start innocent.
-string later become tiny chaos goblin.
-when behavior cling to primitive, grug sometimes give primitive proper home.
+Replace a raw string field with a small Go type and move behavior onto that type.
 
 - Problem: [docs/problem.md](workshops/replace-primitive-with-object/docs/problem.md)
 - Solution walkthrough: [docs/solution.md](workshops/replace-primitive-with-object/docs/solution.md)
@@ -151,9 +136,7 @@ return subtotal + fee</code></pre>
   </tr>
 </table>
 
-temp variable sometimes helpful.
-too many temp variable become plate spinning act.
-query method let grug ask object for answer instead of juggling math in one place.
+Replace temporary variables with small query methods on a Go struct.
 
 - Problem: [docs/problem.md](workshops/replace-temp-with-query/docs/problem.md)
 - Solution walkthrough: [docs/solution.md](workshops/replace-temp-with-query/docs/solution.md)
@@ -162,7 +145,7 @@ query method let grug ask object for answer instead of juggling math in one plac
 
 ## Quick Start
 
-run workshop like this:
+Run a workshop from its `example/` or `solution/` directory path:
 
 ```bash
 go run ./workshops/replace-loop-with-pipeline/example
@@ -172,7 +155,7 @@ go run ./workshops/replace-loop-with-pipeline/solution
 go test ./workshops/replace-loop-with-pipeline/solution
 ```
 
-change path when grug want other workshop:
+Swap the workshop path to run any other exercise:
 
 - `./workshops/decompose-conditional/...`
 - `./workshops/replace-primitive-with-object/...`
@@ -188,5 +171,4 @@ workshops/
     docs/
 ```
 
-more repo rule live in [AGENTS.md](AGENTS.md).
-grug recommend read rule before wild refactor club swinging.
+Repository-specific authoring guidance lives in [AGENTS.md](AGENTS.md).
