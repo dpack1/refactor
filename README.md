@@ -2,7 +2,14 @@
 
 **Grug Brain** | [Big Brain](README.big-brain.md)
 
-grug make small go workshop
+repo hold four small go workshop inspired by four refactoring moves from [Refactoring: Improving the Design of Existing Code](https://www.oreilly.com/library/view/refactoring-improving-the/9780134757681/cover.xhtml).
+
+good book.
+good for grug.
+good for grug who want fewer code smell and fewer surprise bonk on head.
+
+grug make small go workshop because large workshop often become side quest.
+side quest bad when goal only learn few thing.
 
 goal simple:
 
@@ -13,12 +20,13 @@ goal simple:
 each workshop have:
 
 - `example/` where young grug make change
-- `solution/` where older grug already bonk complexity
-- `docs/` where grug explain why bonk happen
+- `solution/` where older grug already bonk code into shape
+- `docs/` where grug explain why bonk happen and where club land
 
 repo for five minute workshop.
 five minute good.
-five minute leave less time for complexity demon to build nest.
+five minute enough to learn thing.
+five minute not enough for complexity demon build full nest.
 
 ## Workshops
 
@@ -48,9 +56,10 @@ for _, user := range users {
 </table>
 
 loop fine.
-but sometimes helper function make intent easier for grug brain.
-important part is not "pipeline fancy".
-important part is "can grug read thing without headache".
+grug not at war with loop.
+but sometimes small helper chain make shape of code easier see with tired cave eyes.
+important part not "pipeline fancy".
+important part "grug read code, grug know what code doing".
 
 - Problem: [docs/problem.md](workshops/replace-loop-with-pipeline/docs/problem.md)
 - Solution walkthrough: [docs/solution.md](workshops/replace-loop-with-pipeline/docs/solution.md)
@@ -80,9 +89,9 @@ return fullTotal(order)</code></pre>
   </tr>
 </table>
 
-big conditional make grug squint.
-named function help grug know what code mean before grug know every detail.
-this good trade.
+big conditional make grug squint and lean toward screen.
+named function tell story sooner.
+grug like when meaning come before forehead wrinkle.
 
 - Problem: [docs/problem.md](workshops/decompose-conditional/docs/problem.md)
 - Solution walkthrough: [docs/solution.md](workshops/decompose-conditional/docs/solution.md)
@@ -119,8 +128,9 @@ func (t Ticket) NeedsPaging() bool {
 </table>
 
 string start innocent.
-string later become tiny chaos goblin.
-when behavior cling to primitive, grug sometimes give primitive proper home.
+then string collect rule.
+then string become tiny chaos goblin in business disguise.
+when this happen, grug give rule proper home.
 
 - Problem: [docs/problem.md](workshops/replace-primitive-with-object/docs/problem.md)
 - Solution walkthrough: [docs/solution.md](workshops/replace-primitive-with-object/docs/solution.md)
@@ -153,7 +163,8 @@ return subtotal + fee</code></pre>
 
 temp variable sometimes helpful.
 too many temp variable become plate spinning act.
-query method let grug ask object for answer instead of juggling math in one place.
+grug drop plate.
+query method let grug ask object for answer instead of juggling whole circus in one function.
 
 - Problem: [docs/problem.md](workshops/replace-temp-with-query/docs/problem.md)
 - Solution walkthrough: [docs/solution.md](workshops/replace-temp-with-query/docs/solution.md)
@@ -190,3 +201,4 @@ workshops/
 
 more repo rule live in [AGENTS.md](AGENTS.md).
 grug recommend read rule before wild refactor club swinging.
+many fence in old code there for reason.

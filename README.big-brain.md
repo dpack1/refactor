@@ -2,6 +2,8 @@
 
 [Grug Brain](README.md) | **Big Brain**
 
+This repository highlights four small Go workshops inspired by four refactoring moves from [Refactoring: Improving the Design of Existing Code](https://www.oreilly.com/library/view/refactoring-improving-the/9780134757681/cover.xhtml).
+
 Small Go workshops for practicing one refactoring move at a time in idiomatic Go.
 
 Each workshop includes:
