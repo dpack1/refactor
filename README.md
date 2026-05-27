@@ -4,19 +4,6 @@ This directory is for building small Go training workshops from source examples,
 
 ## Navigation
 
-```text
-+---------------------------+
-| Table of Contents         |
-+---------------------------+
-| 1. Overview               |
-| 2. Repository Layout      |
-| 3. Workshops              |
-| 4. Intended Workflow      |
-| 5. Running a Workshop     |
-| 6. Notes                  |
-+---------------------------+
-```
-
 1. [Overview](#go-refactor-training)
 2. [Repository Layout](#repository-layout)
 3. [Workshops](#workshops)
