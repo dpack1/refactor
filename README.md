@@ -8,7 +8,7 @@ goal simple:
 
 - teach one refactor
 - keep workshop small
-- let learner finish before coffee get cold
+- let learner finish before cocoa juice get cold
 
 each workshop have:
 
